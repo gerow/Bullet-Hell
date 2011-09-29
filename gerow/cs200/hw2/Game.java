@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -168,6 +169,10 @@ public class Game extends JFrame implements ActionListener, Serializable {
 	Graphics2D g2 = (Graphics2D) g;
 	// g2.setColor(Color.white);
 	// g2.fill(this.backgroundRectangle);
+	//L1
+	BufferedImage b = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+	//L2
+	g2 = (Graphics2D) b.getGraphics();
 	this.map.render(g2);
 	if (this.printFramerate) {
 	    this.printFramerate(g2);
@@ -179,6 +184,8 @@ public class Game extends JFrame implements ActionListener, Serializable {
 	if (this.gameOver) {
 	    this.printGameOver(g2);
 	}
+	//L3
+	((Graphics2D) g).drawImage(b, 0, 0, null);
     }
 
     /**
